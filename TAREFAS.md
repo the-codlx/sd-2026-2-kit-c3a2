@@ -58,10 +58,13 @@
 - [x] Validação do rastreamento no Jaeger.
 - [x] URL pública acessível por HTTPS.
 - [ ] Validação completa da consulta RAG no Railway.
-- [ ] Revisão final das variáveis de ambiente.
-- [ ] Revisão dos logs de todos os serviços.
-- [ ] Teste final seguindo o README atualizado.
+- [x] Verificação local da proteção do arquivo .env.
+- [x] Revisão dos logs visíveis do Gateway, ingestão e worker.
+- [ ] Revisão completa dos logs e configurações de todos os serviços.
+- [x] Teste final seguindo o README atualizado.
+- [x] Login, consulta RAG e indexação na instalação limpa.
 - [ ] Envio do link do repositório no AVA.
+
 
 ## Repositório
 
