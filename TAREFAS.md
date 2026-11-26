@@ -1,49 +1,72 @@
-# TAREFAS - Trabalho C3.A2 (Plataforma de IA como Servico)
 
-Este e o projeto integrador. Reaproveite o que voce fez em C1.A2 e C2.A2.
+# TAREFAS — C3.A2: Plataforma de IA como Serviço
 
-## Nucleo obrigatorio
+## Núcleo obrigatório
 
-- [ ] **1. Autenticacao JWT no gateway** - `gateway/app.py`
-      Rota de login que emite o token e protecao das demais rotas (401 sem token). (Aula 16)
+- [x] 1. Autenticação JWT no Gateway.
+  - Login, geração de token e proteção das rotas.
+  - Testes realizados com HTTP 200 e 401.
 
-- [ ] **2. Rate limit no gateway** - `gateway/app.py`
-      Limitar requisicoes por cliente por minuto. (Aula 8)
+- [x] 2. Rate limit no Gateway.
+  - Controle distribuído de requisições com Redis.
+  - Bloqueio validado com HTTP 429.
 
-- [ ] **3. Dockerfile de cada servico**
-      Um Dockerfile por servico. Use `Dockerfile.exemplo` como ponto de partida. (Aula 13)
+- [x] 3. Dockerfile de cada serviço.
 
-- [ ] **4. docker-compose completo**
-      O sistema inteiro deve subir com UM comando. (Aula 14)
+- [x] 4. Docker Compose completo.
+  - Execução de todos os serviços com um único comando.
 
-- [ ] **5. Deploy em nuvem (free tier)**
-      Publicar e informar a URL publica no README. (Aula 13)
+- [ ] 5. Deploy em nuvem.
+  - Plataforma publicada no Railway.
+  - Login validado com HTTP 200.
+  - Consulta RAG na nuvem pendente de correção do erro 503.
 
-- [ ] **6. Resiliencia**
-      Tempo-limite, retentativa com espera progressiva e circuit breaker. (Aula 11)
+- [x] 6. Resiliência.
+  - Timeout, retentativas e circuit breaker.
+  - Indisponibilidade e recuperação testadas localmente.
 
-- [ ] **7. Observabilidade**
-      Rastreamento distribuido cobrindo gateway -> fila -> worker. (Aula 15)
+- [x] 7. Observabilidade.
+  - OpenTelemetry e Jaeger.
+  - Rastreamento distribuído com 16 spans e 3 serviços.
+  - Evidência disponível em docs/jaeger-trace.png.
 
-- [ ] **8. HTTPS** no servico publicado. (Aula 16)
+- [x] 8. HTTPS no serviço publicado.
 
-- [ ] **9. Secao de conformidade no README**
-      Quais dados sao tratados, com qual finalidade e por quanto tempo. (LGPD, Aula 16)
+- [x] 9. Seção de conformidade e LGPD no README.
 
-- [ ] **10. Relatorio de trade-offs**
-      CAP, custo e latencia do seu sistema.
+- [x] 10. Relatório de trade-offs.
+  - CAP, custo, latência e resiliência.
+  - Disponível em TRADEOFFS.md.
 
-## Extensoes opcionais
+## Extensões opcionais
 
-- [ ] Autoescalonamento de workers conforme o tamanho da fila
-- [ ] Componente serverless ou na borda
-- [ ] CI/CD publicando automaticamente a cada commit
-- [ ] Painel de metricas
-- [ ] Manifests de Kubernetes
+- [ ] Autoescalonamento de workers.
+- [ ] Componente serverless ou na borda.
+- [x] Deploy automático após integração na main.
+- [ ] Painel de métricas.
+- [ ] Manifests de Kubernetes.
 
-## Antes de entregar
+## Antes da entrega
 
-- [ ] Clone em OUTRA maquina e rode o comando unico - funciona?
-- [ ] A URL publica esta no ar?
-- [ ] Toda configuracao esta em variavel de ambiente (nada fixo no codigo)?
-- [ ] Os logs estao livres de dados pessoais?
+- [x] Clonagem e execução local com Docker Compose.
+- [x] Teste de autenticação JWT.
+- [x] Teste de consulta RAG local.
+- [x] Teste de rate limit.
+- [x] Teste de circuit breaker.
+- [x] Teste de recuperação após falha.
+- [x] Teste de indexação assíncrona.
+- [x] Validação do rastreamento no Jaeger.
+- [x] URL pública acessível por HTTPS.
+- [ ] Validação completa da consulta RAG no Railway.
+- [ ] Revisão final das variáveis de ambiente.
+- [ ] Revisão dos logs de todos os serviços.
+- [ ] Teste final seguindo o README atualizado.
+- [ ] Envio do link do repositório no AVA.
+
+## Repositório
+
+https://github.com/the-codlx/sd-2026-2-kit-c3a2
+
+## URL pública
+
+https://sd-2026-2-kit-c3a2-production-bc549286.up.railway.app/docs
