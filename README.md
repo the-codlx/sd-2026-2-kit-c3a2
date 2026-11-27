@@ -1,4 +1,3 @@
-
 # C3.A2 — Plataforma de IA como Serviço
 
 **Sistemas Distribuídos e Computação em Nuvem — FAESA — 2026/2**
@@ -82,12 +81,35 @@ Documentação interativa (Swagger):
 
 https://sd-2026-2-kit-c3a2-production-bc549286.up.railway.app/docs
 
-O login no ambiente publicado foi validado com HTTP 200.
-A consulta RAG na nuvem encontra-se em validação devido
-a uma indisponibilidade do serviço de recuperação.
+O login, a consulta RAG e a indexação assíncrona via
+fila e worker foram validados no ambiente publicado.
 
 O usuário de demonstração pode ser obtido com os
 integrantes do grupo.
+
+### Configuração no Railway
+
+Cada microsserviço é um serviço do Railway criado a partir
+deste repositório, sem Root Directory, com o Dockerfile
+indicado na variável `RAILWAY_DOCKERFILE_PATH`, além de um
+Redis gerenciado. Somente o Gateway possui domínio público
+com HTTPS; os demais se comunicam pela rede privada
+(`*.railway.internal`).
+
+| Serviço | Dockerfile | Variáveis |
+|---|---|---|
+| Gateway | `/servicos/gateway/Dockerfile` | `URL_GERACAO`, `URL_INGESTAO`, `REDIS_URL`, `JWT_SEGREDO`, `USUARIO_DEMO`, `SENHA_DEMO` |
+| Geração | `/servicos/geracao/Dockerfile` | `URL_RECUPERACAO` (porta 8003) |
+| Recuperação | `/servicos/recuperacao/Dockerfile` | `URL_INGESTAO` (porta 8002) |
+| Ingestão | `/servicos/ingestao/Dockerfile` | `REDIS_URL` (porta 8001) |
+| Worker | `/servicos/mensageria/Dockerfile` | `REDIS_URL`, `URL_INGESTAO` |
+| Redis | Serviço gerenciado do Railway | — |
+
+As URLs internas seguem o formato
+`http://<domínio privado>.railway.internal:<porta>` e o
+`REDIS_URL` usa a referência `${{Redis.REDIS_URL}}`. Como o
+Jaeger roda apenas no ambiente local, a variável
+`OTEL_SDK_DISABLED=true` desliga o envio de traces na nuvem.
 
 ## 5. Como executar localmente
 
@@ -338,7 +360,8 @@ A revisão final dos logs de todos os serviços
 | Processamento pelo worker | HTTP 200 na ingestao |
 | Rastreamento Jaeger | 16 spans e 3 servicos |
 | Login no Railway via HTTPS | HTTP 200 |
-| Consulta RAG no Railway | Pendente - HTTP 503 |
+| Consulta RAG no Railway | HTTP 200 |
+| Indexação assíncrona no Railway | HTTP 202, processada pelo worker |
 
 No teste local do circuit breaker, uma chamada
 durou aproximadamente 18,99 segundos antes da
