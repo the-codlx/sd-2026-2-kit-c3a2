@@ -1,4 +1,3 @@
-
 # TAREFAS — C3.A2: Plataforma de IA como Serviço
 
 ## Núcleo obrigatório
@@ -16,10 +15,11 @@
 - [x] 4. Docker Compose completo.
   - Execução de todos os serviços com um único comando.
 
-- [ ] 5. Deploy em nuvem.
+- [x] 5. Deploy em nuvem.
   - Plataforma publicada no Railway.
   - Login validado com HTTP 200.
-  - Consulta RAG na nuvem pendente de correção do erro 503.
+  - Consulta RAG validada com HTTP 200.
+  - Indexação assíncrona validada com HTTP 202 e processada pelo worker.
 
 - [x] 6. Resiliência.
   - Timeout, retentativas e circuit breaker.
@@ -57,7 +57,7 @@
 - [x] Teste de indexação assíncrona.
 - [x] Validação do rastreamento no Jaeger.
 - [x] URL pública acessível por HTTPS.
-- [ ] Validação completa da consulta RAG no Railway.
+- [x] Validação completa da consulta RAG no Railway.
 - [x] Verificação local da proteção do arquivo .env.
 - [x] Revisão dos logs visíveis do Gateway, ingestão e worker.
 - [ ] Revisão completa dos logs e configurações de todos os serviços.
